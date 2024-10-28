@@ -23,7 +23,7 @@ services:
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
     volumes:
-    - ./:/var/www/html:cached
+    - ./wordpress:/var/www/html:cached
 
   nginx:
     image: wodby/nginx:$NGINX_TAG
@@ -35,5 +35,7 @@ services:
       NGINX_ERROR_LOG_LEVEL: debug
       NGINX_BACKEND_HOST: php
       NGINX_VHOST_PRESET: wordpress
+    ports:
+    - ${PROJECT_PORT}:80
     volumes:
-    - ./:/var/www/html:cached
+    - ./wordpress:/var/www/html:cached
